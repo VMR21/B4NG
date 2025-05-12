@@ -2,97 +2,86 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const fakeData = [
-  { username: "XplodeMax", amount: 58127 },
-  { username: "BangBang", amount: 41750 },
-  { username: "GodAim", amount: 39210 },
-  { username: "TryMe", amount: 31890 },
-  { username: "SniperGirl", amount: 28900 },
-  { username: "DripKing", amount: 21200 },
+  { username: "*****EID", amount: 83725, prize: 9000 },
+  { username: "****688", amount: 47607, prize: 4500 },
+  { username: "******B33", amount: 33174, prize: 2000 },
+  { username: "**FAN", amount: 27177, prize: 1250 },
+  { username: "******921", amount: 25321, prize: 1000 },
+  { username: "******qnk", amount: 21305, prize: 750 },
+  { username: "******ric", amount: 18714, prize: 500 },
+  { username: "******eun", amount: 17998, prize: 350 },
 ];
 
 export default function Leaderboard() {
-  const [players, setPlayers] = useState([]);
-  const [countdown, setCountdown] = useState("");
-
-  // Countdown to the end of the month
-  useEffect(() => {
-    const target = new Date();
-    target.setMonth(target.getMonth() + 1, 1);
-    target.setHours(0, 0, 0, 0);
-
-    const interval = setInterval(() => {
-      const now = new Date();
-      const diff = target - now;
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
+  const [top3, setTop3] = useState([]);
+  const [rest, setRest] = useState([]);
 
   useEffect(() => {
-    setTimeout(() => setPlayers(fakeData), 500);
+    setTop3(fakeData.slice(0, 3));
+    setRest(fakeData.slice(3));
   }, []);
 
   return (
     <div className="bg-dark text-white px-4 py-20 min-h-screen text-center">
       <motion.h1
-        className="text-4xl md:text-6xl font-heading glow-text mb-4"
+        className="text-4xl md:text-6xl font-heading glow-text mb-2"
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
         🏆 Monthly Leaderboard
       </motion.h1>
+      <p className="text-white/70 text-lg mb-12">
+        Track the top performers using code <span className="text-primary font-semibold">b4ng</span>. Top 10 get rewards.
+      </p>
 
-      <motion.p
-        className="text-white/70 text-lg mb-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-      >
-        Compete every month using code <span className="text-primary font-bold">b4ng</span>. The top players by total wager win exclusive prizes.
-      </motion.p>
-
-      <motion.div
-        className="text-primary text-xl font-mono mb-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-      >
-        Ends in: {countdown}
-      </motion.div>
-
-      <div className="max-w-6xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {players.map((player, i) => {
-          const rankColors = [
-            "from-yellow-400 to-yellow-200",
-            "from-gray-300 to-gray-200",
-            "from-orange-500 to-yellow-300",
-          ];
-
-          const bg = i < 3
-            ? `bg-gradient-to-br ${rankColors[i]} text-black`
-            : "bg-white/5 border border-white/10 text-white";
+      {/* Top 3 Spotlight */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12">
+        {top3.map((player, i) => {
+          const glow = ["shadow-yellow-500", "shadow-gray-400", "shadow-orange-500"];
+          const rankColors = ["text-yellow-300", "text-gray-300", "text-orange-300"];
+          const borderGlow = ["border-yellow-500", "border-gray-400", "border-orange-500"];
 
           return (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className={`rounded-xl p-6 shadow-xl ${bg} hover:scale-105 transition backdrop-blur`}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: i * 0.2 }}
+              className={`rounded-xl bg-black/80 border-2 ${borderGlow[i]} p-6 text-center backdrop-blur shadow-xl ${glow[i]} hover:scale-105 transition`}
             >
-              <div className="text-xl font-bold mb-2">#{i + 1} {player.username}</div>
-              <div className="text-sm opacity-80 font-mono">Wagered: ${player.amount.toLocaleString()} USDT</div>
+              <div className={`text-3xl font-bold ${rankColors[i]} mb-2`}>#{i + 1}</div>
+              <div className="text-xl font-semibold text-white mb-1">{player.username}</div>
+              <div className="text-white/70 text-sm mb-4">${player.amount.toLocaleString()} WAGERED</div>
+              <div className="text-green-400 font-bold text-lg">🏆 ${player.prize.toLocaleString()}</div>
             </motion.div>
           );
         })}
+      </div>
+
+      {/* Rest of leaderboard */}
+      <div className="max-w-4xl mx-auto">
+        <div className="grid grid-cols-4 gap-4 px-4 text-left text-sm font-semibold text-white/60 border-b border-white/10 pb-2">
+          <div>Rank</div>
+          <div>Player</div>
+          <div>Wagered</div>
+          <div>Prize</div>
+        </div>
+
+        {rest.map((player, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1 }}
+            className="grid grid-cols-4 gap-4 px-4 py-3 border-b border-white/5 text-sm text-white hover:bg-white/5 transition"
+          >
+            <div>= #{i + 4}</div>
+            <div>{player.username}</div>
+            <div>${player.amount.toLocaleString()}</div>
+            <div className="text-green-400 font-semibold">${player.prize}</div>
+          </motion.div>
+        ))}
       </div>
     </div>
   );
