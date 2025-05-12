@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, animate } from "framer-motion";
 
 const fakeData = [
   { username: "*****EID", amount: 83725, prize: 9000 },
@@ -16,10 +16,17 @@ export default function Leaderboard() {
   const [top3, setTop3] = useState([]);
   const [rest, setRest] = useState([]);
   const [countdown, setCountdown] = useState("");
+  const [totalPrize, setTotalPrize] = useState(0);
 
   useEffect(() => {
     setTop3(fakeData.slice(0, 3));
     setRest(fakeData.slice(3));
+
+    const total = fakeData.reduce((acc, cur) => acc + cur.prize, 0);
+    animate(0, total, {
+      duration: 2,
+      onUpdate: (v) => setTotalPrize(Math.floor(v))
+    });
   }, []);
 
   useEffect(() => {
@@ -52,15 +59,23 @@ export default function Leaderboard() {
       >
         🏆 Monthly Leaderboard
       </motion.h1>
-      <p className="text-white/70 text-lg mb-4">
+      <p className="text-white/70 text-lg mb-2">
         Track the top performers using code <span className="text-primary font-semibold">b4ng</span>. Top 10 get rewards.
       </p>
+      <motion.div
+        className="text-green-400 text-xl font-bold mb-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+      >
+        💰 Total Prize Pool: ${totalPrize.toLocaleString()}
+      </motion.div>
 
       <motion.div
         className="text-primary text-lg font-mono mb-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
+        transition={{ delay: 0.4 }}
       >
         Ends in: {countdown}
       </motion.div>
