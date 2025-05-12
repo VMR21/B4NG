@@ -7,13 +7,9 @@ body {
   background: radial-gradient(circle at center, #111 0%, #0e0e0e 100%);
   color: white;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
   overflow-x: hidden;
-  background-attachment: fixed;
-  scroll-behavior: smooth;
-}
-
-.glow {
-  box-shadow: 0 0 15px #3fffc0, 0 0 30px #ff5ad4;
 }
 
 .glow-text {
