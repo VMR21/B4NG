@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background: radial-gradient(circle at center, #111 0%, #0e0e0e 100%);
+  color: white;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-attachment: fixed;
+  scroll-behavior: smooth;
+}
+
+.glow {
+  box-shadow: 0 0 15px #3fffc0, 0 0 30px #ff5ad4;
+}
+
+.glow-text {
+  background: linear-gradient(90deg, #3fffc0, #ff5ad4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
