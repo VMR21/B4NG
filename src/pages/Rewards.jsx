@@ -4,13 +4,19 @@ const rewards = [
   {
     title: "Double Monthly Bonus",
     description: "All users with code b4ng receive double monthly rewards on top of base leaderboard prizes.",
-    button: "DOUBLE MONTHLY BONUS",
+    button: "CLAIM MONTHLY BONUS",
     link: "https://stake.com/?c=b4ng"
   },
   {
     title: "Instant Rakeback",
     description: "Every wager gives back. Code b4ng instantly activates max rakeback on your account.",
     button: "CLAIM RAKEBACK",
+    link: "https://stake.com/?c=b4ng"
+  },
+  {
+    title: "$15 Sign Up Bonus",
+    description: "New users who register with code b4ng receive a $15 bonus on their first deposit.",
+    button: "CLAIM SIGN UP BONUS",
     link: "https://stake.com/?c=b4ng"
   },
   {
