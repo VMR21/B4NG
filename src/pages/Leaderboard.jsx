@@ -15,10 +15,31 @@ const fakeData = [
 export default function Leaderboard() {
   const [top3, setTop3] = useState([]);
   const [rest, setRest] = useState([]);
+  const [countdown, setCountdown] = useState("");
 
   useEffect(() => {
     setTop3(fakeData.slice(0, 3));
     setRest(fakeData.slice(3));
+  }, []);
+
+  useEffect(() => {
+    const target = new Date();
+    target.setMonth(target.getMonth() + 1, 1);
+    target.setHours(0, 0, 0, 0);
+
+    const interval = setInterval(() => {
+      const now = new Date();
+      const diff = target - now;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+    }, 1000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -31,9 +52,18 @@ export default function Leaderboard() {
       >
         🏆 Monthly Leaderboard
       </motion.h1>
-      <p className="text-white/70 text-lg mb-12">
+      <p className="text-white/70 text-lg mb-4">
         Track the top performers using code <span className="text-primary font-semibold">b4ng</span>. Top 10 get rewards.
       </p>
+
+      <motion.div
+        className="text-primary text-lg font-mono mb-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+      >
+        Ends in: {countdown}
+      </motion.div>
 
       {/* Top 3 Spotlight */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12">
