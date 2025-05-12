@@ -12,7 +12,7 @@ export default function Home() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover z-0 opacity-40"
       >
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-stars-space-loop-background-1610-large.mp4" type="video/mp4" />
+        <source src="https://cdn.coverr.co/videos/coverr-space-walk-4047/1080p.mp4" type="video/mp4" />
       </video>
 
       {/* Overlay */}
