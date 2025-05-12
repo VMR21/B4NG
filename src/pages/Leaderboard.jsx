@@ -121,7 +121,7 @@ export default function Leaderboard() {
             transition={{ delay: i * 0.1 }}
             className="grid grid-cols-4 gap-4 px-4 py-3 border-b border-white/5 text-sm text-white hover:bg-white/5 transition"
           >
-            <div>= #{i + 4}</div>
+            <div>#{i + 4}</div>
             <div>{player.username}</div>
             <div>${player.amount.toLocaleString()}</div>
             <div className="text-green-400 font-semibold">${player.prize}</div>
