@@ -34,7 +34,9 @@ export default function Leaderboard() {
             "from-gray-300 to-gray-200",
             "from-orange-500 to-yellow-300",
           ];
-          const bg = i < 3 ? `bg-gradient-to-br ${rankColors[i]} text-black` : "bg-[#1a1a1a] text-white";
+          const bg = i < 3
+            ? `bg-gradient-to-br ${rankColors[i]} text-black`
+            : "bg-[#1a1a1a] text-white";
 
           return (
             <motion.div
