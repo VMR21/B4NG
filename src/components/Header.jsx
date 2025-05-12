@@ -12,9 +12,11 @@ export default function Header() {
           />
           <h1 className="text-2xl font-bold text-white">b4ng</h1>
         </Link>
+
         <nav className="space-x-6 text-white/70 text-sm">
           <Link to="/" className="hover:text-white transition">Home</Link>
           <Link to="/leaderboard" className="hover:text-white transition">Leaderboard</Link>
+          <Link to="/rewards" className="hover:text-white transition">Rewards</Link>
         </nav>
       </div>
     </header>
