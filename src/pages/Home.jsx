@@ -2,82 +2,111 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 export default function Home() {
+  const fadeIn = (delay = 0) => ({
+    initial: { opacity: 0, y: 40 },
+    animate: { opacity: 1, y: 0 },
+    transition: { delay, duration: 0.6 },
+  });
+
   return (
-    <div className="bg-dark text-white px-4 py-10">
-      <motion.h1
-        className="text-center text-5xl md:text-7xl font-heading glow-text mb-6"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+    <div className="bg-dark text-white px-4 py-16 space-y-20">
+
+      {/* Hero Section */}
+      <motion.div
+        {...fadeIn(0)}
+        className="text-center"
       >
-        B4NG LEADERBOARD
-      </motion.h1>
+        <h1 className="text-5xl md:text-7xl font-heading glow-text mb-4">B4NG LEADERBOARD</h1>
+        <p className="text-white/70 max-w-xl mx-auto text-lg">
+          Use code <span className="text-primary font-bold">b4ng</span> on Stake and join the exclusive leaderboard for massive rewards.
+        </p>
+      </motion.div>
 
-      <motion.p
-        className="text-center text-white/70 max-w-2xl mx-auto mb-10 text-lg"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
+      {/* About Box */}
+      <motion.div
+        {...fadeIn(0.2)}
+        className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-8 max-w-4xl mx-auto shadow-xl hover:shadow-2xl transition"
       >
-        Use code <span className="text-primary font-bold">b4ng</span> on Stake and become part of the exclusive leaderboard race. Wager, rank up, and win custom rewards.
-      </motion.p>
+        <h2 className="text-2xl font-bold mb-3 text-white">📌 What Is This?</h2>
+        <p className="text-white/70 leading-relaxed">
+          This is a custom leaderboard for Stake users who register or play with code <span className="text-primary font-bold">b4ng</span>.
+          Every wager you make helps you climb the ranks and win exclusive bonuses.
+        </p>
+      </motion.div>
 
-      <div className="max-w-4xl mx-auto space-y-12 text-white/80 leading-relaxed">
-        <motion.section
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-        >
-          <h2 className="text-2xl font-bold text-white mb-2">📌 What Is This?</h2>
-          <p>
-            This is a custom Stake leaderboard built for users who enter the code <span className="text-primary font-semibold">b4ng</span>. By using this code, you are tracked automatically and placed into a competition based on your wagered amount.
-          </p>
-        </motion.section>
-
-        <motion.section
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-        >
-          <h2 className="text-2xl font-bold text-white mb-2">🎁 Why Use Code <span className="text-primary">b4ng</span>?</h2>
-          <ul className="list-disc pl-6 space-y-2">
-            <li>Instant eligibility for leaderboard prizes</li>
-            <li>Exclusive support + guidance via Telegram</li>
-            <li>Giveaways & custom bonus opportunities</li>
-            <li>Private competitions and VIP benefits</li>
-          </ul>
-        </motion.section>
-
-        <motion.section
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-        >
-          <h2 className="text-2xl font-bold text-white mb-2">🚀 How To Join</h2>
-          <ol className="list-decimal pl-6 space-y-2">
-            <li>Visit <a href="https://stake.com/?c=b4ng" className="text-primary hover:underline" target="_blank">Stake.com using this link</a></li>
-            <li>Create your account with the code <strong>b4ng</strong></li>
-            <li>Start wagering and you’ll be automatically ranked</li>
-          </ol>
-        </motion.section>
-
-        <motion.section
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1 }}
-        >
-          <h2 className="text-2xl font-bold text-white mb-2">📊 View The Leaderboard</h2>
-          <p>
-            The leaderboard is updated live and shows the top players who have wagered the most using code <span className="text-primary font-semibold">b4ng</span>.
-          </p>
-          <Link
-            to="/leaderboard"
-            className="inline-block mt-4 px-6 py-3 bg-primary text-black font-bold rounded-lg hover:scale-105 transition"
+      {/* Why Use Cards */}
+      <motion.div
+        {...fadeIn(0.4)}
+        className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6"
+      >
+        {[
+          "💰 Instant eligibility for leaderboard rewards",
+          "🎁 Access to giveaways + custom VIP bonuses",
+          "🧠 Strategy and support for high rollers",
+          "🔥 Private events and exclusive drops",
+        ].map((text, i) => (
+          <motion.div
+            key={i}
+            whileHover={{ scale: 1.05 }}
+            className="bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur hover:shadow-xl transition"
           >
-            View Leaderboard
-          </Link>
-        </motion.section>
-      </div>
+            <p className="text-white">{text}</p>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* How to Join Steps */}
+      <motion.div
+        {...fadeIn(0.6)}
+        className="max-w-5xl mx-auto"
+      >
+        <h2 className="text-2xl font-bold text-white mb-6 text-center">🚀 How To Join</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            {
+              step: "1",
+              title: "Join via Code",
+              desc: "Go to Stake using the code b4ng or our direct link.",
+            },
+            {
+              step: "2",
+              title: "Start Wagering",
+              desc: "Wager on any games. Every amount counts.",
+            },
+            {
+              step: "3",
+              title: "Check Leaderboard",
+              desc: "Your rank is updated automatically. Climb up!",
+            },
+          ].map((s, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ y: -5 }}
+              className="bg-white/5 border border-white/10 rounded-xl p-6 text-center backdrop-blur-lg shadow"
+            >
+              <div className="text-4xl font-bold text-primary mb-2">{s.step}</div>
+              <h3 className="text-xl font-semibold mb-1">{s.title}</h3>
+              <p className="text-white/70 text-sm">{s.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Final CTA */}
+      <motion.div
+        {...fadeIn(0.8)}
+        className="text-center"
+      >
+        <p className="text-white/70 mb-4 text-lg">
+          View the current rankings and start climbing the board.
+        </p>
+        <Link
+          to="/leaderboard"
+          className="px-8 py-4 bg-primary text-black font-bold rounded-full shadow-lg hover:scale-105 transition"
+        >
+          View Leaderboard
+        </Link>
+      </motion.div>
     </div>
   );
 }
