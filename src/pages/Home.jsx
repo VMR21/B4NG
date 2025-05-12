@@ -3,23 +3,26 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div className="relative bg-black text-white min-h-screen overflow-hidden">
-      {/* Fullscreen Background Video */}
+    <div className="relative min-h-screen text-white overflow-hidden bg-black">
+      {/* Background Video */}
       <video
         autoPlay
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0 opacity-40"
+        className="absolute inset-0 w-full h-full object-cover z-0 opacity-30"
       >
-        <source src="https://cdn.coverr.co/videos/coverr-space-walk-4047/1080p.mp4" type="video/mp4" />
+        <source
+          src="https://cdn.coverr.co/videos/coverr-space-walk-4047/1080p.mp4"
+          type="video/mp4"
+        />
       </video>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/70 to-black z-10" />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/80 to-black z-10" />
 
-      {/* Content */}
-      <div className="relative z-20 flex flex-col justify-center items-center text-center px-4 py-32 space-y-10">
+      {/* Foreground Content */}
+      <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 py-32 space-y-10">
         <motion.h1
           className="text-4xl md:text-6xl font-heading glow-text"
           initial={{ opacity: 0, y: -30 }}
@@ -35,7 +38,9 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          Use code <span className="text-primary font-bold">b4ng</span> on Stake.com and become part of our exclusive leaderboard challenge. Track your progress, wager more, and win exclusive bonuses.
+          Use code <span className="text-primary font-bold">b4ng</span> on
+          Stake.com and climb our exclusive leaderboard to unlock bonuses and
+          rewards.
         </motion.p>
 
         <motion.div
