@@ -43,6 +43,13 @@ export default function Home() {
         >
           View Rewards
         </Link>
+
+        <Link
+          to="/leaderboard"
+          className="bg-white/10 border border-white/20 text-white px-8 py-4 rounded-full hover:bg-primary hover:text-black transition"
+        >
+          View Leaderboard
+        </Link>
       </motion.div>
     </div>
   );
